@@ -7,7 +7,7 @@ import Header from "components/layouts/Header"
 
 const useStyles = makeStyles(() => ({
     container: {
-        paddingTop: "3rem"
+        marginTop: "3rem"
     }
 }))
 
@@ -26,9 +26,7 @@ const CommonLayout = ({children}: CommonLayoutProps) => {
             <main>
                 <Container maxWidth="lg" className={classes.container}>
                     <Grid container justify="center">
-                        <Grid item>
-                            {children}
-                        </Grid>
+                        {children}
                     </Grid>
                 </Container>
             </main>
