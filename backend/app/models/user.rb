@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
   has_many :active_likes, through: :likes_from, source: :to_user
   has_many :passive_likes, through: :likes_to, source: :from_user
 
+  has_many :chat_room_users
+  has_many :chat_rooms, through :chat_room_users
+
 end
