@@ -1,7 +1,7 @@
 import React, {useState, useEffect, createContext} from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 
-import {CommonLayout, Home, SignUp, SignIn} from "components/index"
+import {CommonLayout, Home, SignUp, SignIn, ChatRooms, ChatRoom, Users, NotFound} from "components/index"
 
 import { getCurrentUser } from 'lib/api/auth'
 import { User } from 'interfaces/index'
@@ -47,7 +47,7 @@ const App: React.FC = () => {
       if (isSignedIn) {
         return children
       } else {
-        return <Navigate to="/signin" replace />
+        return <Navigate to="/signin"/>
       }
     } else {
       return <></>
@@ -59,18 +59,13 @@ const App: React.FC = () => {
       <AuthContext.Provider value={{ loading, setLoading, isSignedIn, setIsSignedIn, currentUser, setCurrentUser}}>
         <CommonLayout>
           <Routes>
-            <Route path="/signup" element={<SignUp/>} />
-            <Route path="/signin" element={<SignIn/>}/>
-            <Route
-              path="/"
-              element={
-                <Private>
-                  <Routes>
-                    <Route index element={<Home />} />
-                  </Routes>
-                </Private>
-              }
-            />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/home" element={<Private><Home /></Private>} />
+            <Route path="/users" element={<Private><Users /></Private>} />
+            <Route path="/chat_rooms" element={<Private><ChatRooms /></Private>} />
+            <Route path="/chatroom/:id" element={<Private><ChatRoom /></Private>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </CommonLayout>
       </AuthContext.Provider>
