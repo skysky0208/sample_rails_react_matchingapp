@@ -20,12 +20,12 @@ class Api::V1::LikesController < ApplicationController
             chat_room = ChatRoom.create
 
             ChatRoomUser.find_or_create_by(
-                chat_room_id: chat_room.id
+                chat_room_id: chat_room.id,
                 user_id: active_like.from_user_id
             )
 
             ChatRoomUser.find_or_create_by(
-                chat_room_id: chat_room.id
+                chat_room_id: chat_room.id,
                 user_id: passive_like.from_user_id
             )
 

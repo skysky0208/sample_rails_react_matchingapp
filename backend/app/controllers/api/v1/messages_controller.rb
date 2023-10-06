@@ -3,7 +3,7 @@ class Api::V1::MessagesController < ApplicationController
         message = Message.new(message_params)
 
         if message.save
-            remder json: { status: 200, message: message }
+            render json: { status: 200, message: message }
         else
             render json: { status: 500, message: "作成に失敗しました" }
         end

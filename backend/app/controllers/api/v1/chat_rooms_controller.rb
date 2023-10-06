@@ -6,7 +6,7 @@ class Api::V1::ChatRoomsController < ApplicationController
 
         current_api_v1_user.chat_rooms.order("created_at DESC").each do |chat_room|
             chat_rooms << {
-                chat_room: chat_room
+                chat_room: chat_room,
                 other_user: chat_room.users.where.not(id: current_api_v1_user.id)[0],
                 last_message: chat_room.messages[-1]
             }

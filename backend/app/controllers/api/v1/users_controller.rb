@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
 
     def index
         users = User.where(prefecture: current_api_v1_user.prefecture).where.not(id: current_api_v1_user.id, gender: current_api_v1_user.gender).order("created_at DESC")
+
     
         render json: { status: 200, users: users }
     end
